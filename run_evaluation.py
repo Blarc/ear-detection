@@ -37,11 +37,20 @@ class EvaluateAll:
         evaluation = Evaluation()
 
         # Change the following detector and/or add your detectors below
+
+        # CASCADE
         import detectors.cascade_detector.detector as cascade_detector
         # cascade_detector = cascade_detector.Detector()
 
+        # V2
         import detectors.v2.detector as v2
         v2 = v2.Detector()
+
+        # V3
+        import detectors.v3.detector as v3
+        v3 = v3.Detector()
+
+        chosen_detector = v3
 
         for im_name in im_list:
             # Read an image
@@ -51,7 +60,7 @@ class EvaluateAll:
             # img = preprocess.histogram_equlization_rgb(img)  # This one makes VJ worse
 
             # Run the detector. It runs a list of all the detected bounding-boxes. In segmentor you only get a mask matrices, but use the iou_compute in the same way.
-            prediction_list = v2.detect(im_name)
+            prediction_list = chosen_detector.detect(im_name)
 
             # Read annotations:
             annot_name = os.path.join(self.annotations_path, Path(os.path.basename(im_name)).stem) + '.txt'
