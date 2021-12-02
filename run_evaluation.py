@@ -50,7 +50,11 @@ class EvaluateAll:
         import detectors.v3.detector as v3
         v3 = v3.Detector()
 
-        chosen_detector = v3
+        # V4
+        import detectors.v4.detector as v4
+        v4 = v4.Detector()
+
+        chosen_detector = v4
 
         for im_name in im_list:
             # Read an image
